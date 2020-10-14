@@ -1,0 +1,11 @@
+.button-style {
+  border-radius: 50px;
+  background: #555454;
+  box-shadow: 22px 22px 62px #363535, -22px -22px 62px #747373;
+  color: white;
+}
+
+.button-style:focus {
+  background: #555454;
+  box-shadow: inset 22px 22px 62px #363535, inset -22px -22px 62px #747373;
+}
