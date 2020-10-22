@@ -31,7 +31,7 @@
   border: 2px solid blanchedalmond;
 }
 .Button-user a:hover {
-  color: #fdd7d8 !important;
+  color: #fa4d41 !important;
   background-color: #f4f4f5;
 }
 .Button-user a:active {
@@ -84,7 +84,7 @@
   align-items: center;
   position: relative;
   margin-bottom: 1px;
-  color: #c4dcff;
+  color: #fa4d41;
 }
 .sidebar_inner .close {
   top: 5px;
@@ -109,7 +109,7 @@
   font-size: 25px;
   cursor: pointer;
   margin-right: 20px;
-  color: #fdd7d8;
+  color: #fa4d41;
   display: none;
 }
 
