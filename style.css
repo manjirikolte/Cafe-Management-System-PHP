@@ -1,11 +1,20 @@
 .button-style {
-  border-radius: 50px;
-  background: #555454;
-  box-shadow: 22px 22px 62px #363535, -22px -22px 62px #747373;
-  color: white;
+  all: unset;
+}
+.bill-calc {
+  background-color: beige;
 }
 
-.button-style:focus {
-  background: #555454;
-  box-shadow: inset 22px 22px 62px #363535, inset -22px -22px 62px #747373;
+.results tr[visible="false"],
+.no-result {
+  display: none;
+}
+
+.results tr[visible="true"] {
+  display: table-row;
+}
+
+.counter {
+  padding: 8px;
+  color: #ccc;
 }
