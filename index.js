@@ -1,4 +1,20 @@
 $(document).ready(function() {
+    
+    // Menubar toggle
+    $(".siderbar_menu li").click(function () {
+        $(".siderbar_menu li").removeClass("active");
+        $(this).addClass("active");
+      });
+      
+      $(".hamburger").click(function () {
+        $(".wrapper").addClass("active");
+      });
+      
+      $(".close, .bg_shadow").click(function () {
+        $(".wrapper").removeClass("active");
+      });
+
+    // Search Function
     $(".search").keyup(function () {
       var searchTerm = $(".search").val();
       var listItem = $('.results tbody').children('tr');

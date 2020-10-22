@@ -1,40 +1,29 @@
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style: none;
-  text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
 }
 
-.results tr[visible="false"],
-.no-result {
-  display: none;
+body {
+  background: #fefefe;
 }
-
-.results tr[visible="true"] {
-  display: table-row;
-}
-
-.counter {
-  padding: 8px;
-  color: #ccc;
-}
-
-/* DASH BOARD STYLE */
 
 /* Button Style  */
-.Button-user a {
-  display: block;
-  color: white !important;
-  font-weight: 600;
-  padding: 10px 20px;
-  border: 2px solid blanchedalmond;
+.Button-user a{  
+    display: block;
+    color: white!important;
+    font-weight: 600;
+    padding: 10px 20px;
+    border:2px solid blanchedalmond;
 }
-.Button-user a:hover {
-  color: #fdd7d8 !important;
-  background-color: #f4f4f5;
+.Button-user a:hover{
+    color: #465474!important;
+    background-color: #f4f4f5;
 }
-.Button-user a:active {
+.Button-user a:active{
   box-shadow: none;
   transition: ease-in-out 0.2s;
 }
@@ -67,7 +56,7 @@
   top: 0;
   left: 0;
   height: 100vh;
-  background: #fdd7d8;
+  background: #4f5e81;
   z-index: 999;
   transition: all 0.3s ease;
 }
@@ -87,6 +76,7 @@
   color: #c4dcff;
 }
 .sidebar_inner .close {
+ 
   top: 5px;
   right: 15px;
   font-size: 25px;
@@ -109,9 +99,10 @@
   font-size: 25px;
   cursor: pointer;
   margin-right: 20px;
-  color: #fdd7d8;
+  color: #5558c9;
   display: none;
 }
+
 
 @media (max-width: 1024px) {
   .sidebar_inner {
