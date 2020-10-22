@@ -116,7 +116,17 @@
       </div>
     </div>
     <div class="content">
-     <h5> Voice Recognization Attendance System</h5>
+     <h5>  Cafe Management System</h5>
+
+     
+     <dl class="inputbox">
+        <dt class="inputbox-title">Input Text</dt>
+        <dd class="inputbox-content">
+          <input id="input0" type="text" required/>
+          <label for="input0">ID</label>
+          <span class="underline"></span>
+        </dd>
+      </dl>
 
 
         <!-- Modal -->

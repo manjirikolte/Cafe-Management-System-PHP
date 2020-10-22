@@ -44,7 +44,7 @@ header {
 }
 
 .main-nav li a:hover {
-  border-bottom: 2px solid #bf55ec;
+  border-bottom: 2px solid #9193e3;
 }
 
 .main-content-header {
@@ -74,16 +74,16 @@ h1 {
 }
 .btn-full {
   background-color: transparent;
-  color: #bf55ec;
+  color: #5659dd;
   margin-right: 15px;
-  border: 2px solid #bf55ec;
+  border: 2px solid #9193e3;
 }
 
 .btn-nav {
   background-color: transparent;
-  color: #bf55ec;
+  color: #5659dd;
   margin-right: 15px;
-  border: 2px solid #bf55ec;
+  border: 2px solid #9193e3;
 }
 .colorchange {
   animation: colorchangeyoga 1s infinite;
