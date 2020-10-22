@@ -2,6 +2,7 @@
     session_start();
     $database_name = "Product_details";
     $con = mysqli_connect("localhost","root","",$database_name);
+ 
 
     if (isset($_POST["add"])){
         if (isset($_SESSION["cart"])){
@@ -47,6 +48,7 @@
 
 
     if(isset($_POST["Add_ITEMS"])){
+      header('Location: cart.php');
     
     if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
