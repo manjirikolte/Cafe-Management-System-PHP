@@ -200,16 +200,19 @@
     </table>
     </div>
 
-    <div class="col-6 bill-calc">
+    <div class="col-4 table-style">
+     <div>
+       <p class="text-center"> Lorem, ipsum dolor sit amet consectetur adipisicing elit quibusdam </p>
+     </div>
     <div class="table-responsive">
         <table>
         <thead>
         <tr>
-            <th width="10%">Product Name</th>
-            <th width="10%">Quantity</th>
-            <th width="10%">Rate</th>
-            <th width="10%">Amount</th>
-            <th width="10%">Remove Item</th>
+            <td class="pb-3" width="15%">Items</td>
+            <td class="pb-3" width="10%">Qty</td>
+            <td class="pb-3" width="10%">Rate</td>
+            <td class="pb-3" width="10%">Amount</td>
+            <td class="pb-3" width="10%">Remove</td>
         </tr>
         </thead>
         <tbody>
@@ -224,8 +227,8 @@
                         <td> <?php echo $value["product_price"]; ?></td>
                         <td>
                             <?php echo number_format($value["item_quantity"] * $value["product_price"], 2); ?></td>
-                        <td><a href="Cart.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span
-                                    class="text-danger">Remove</span></a></td>
+                        <td class="px-3"><a href="Cart.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span
+                                    class="text-danger ">✕</span></a></td>
 
                     </tr>
                     <?php
@@ -233,10 +236,10 @@
                 }
                     ?>
                     <tr>
-                        <td colspan="3" align="right">TOTAL AMOUNT TO PAY</td>
-                        <th align="right"> ₹ <?php echo number_format($total, 2); ?></th>
+                        <td colspan="3" align="right" class="p-3">TOTAL AMOUNT TO PAY</td>
+                        <th align="right" style="font-size:1.2em"> ₹ <?php echo number_format($total, 2); ?></th>
                         <td> <a href="Cart.php?action=empty"><span
-                                    class="text-danger">Empty</span></a> </td>
+                                    class="Button-style"> SOLD </span></a> </td>
                     </tr>
                     <?php
                 }

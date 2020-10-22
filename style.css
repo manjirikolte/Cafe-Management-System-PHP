@@ -5,6 +5,10 @@
   list-style: none;
   text-decoration: none;
 }
+a:hover {
+  color: inherit; /* blue colors for links too */
+  text-decoration: none; /* no underline */
+}
 
 .results tr[visible="false"],
 .no-result {
@@ -26,23 +30,14 @@
   box-shadow: 0 0 0 0.2rem #cdcdf8;
 }
 
+.search {
+  border-bottom: solid 2px #9193e3;
+}
+
 /* Button Style */
 #addItems-btn {
   background-color: #9193e3;
 }
-/* .button-style {
-  width: 100%;
-  display: inline-block;
-  padding: 10px 30px;
-  font-weight: 600px;
-  text-decoration: none;
-  text-transform: uppercase;
-  border-radius: 200px;
-  background-color: transparent;
-  color: #5659dd;
-  margin-right: 15px;
-  border: 2px solid #9193e3;
-} */
 
 .Button-style {
   color: #fa4d41;
@@ -51,13 +46,7 @@
   box-shadow: 0px 2px 10px #fcc6dc;
   border-radius: 50px;
 }
-.Button-style2 {
-  all: unset;
-  color: #5659dd;
-  font-weight: 600;
-  padding: 10px 20px;
-  box-shadow: 0px 2px 10px #bcbcfd;
-}
+
 .Button-style:hover {
   color: white;
   background-color: #bcbcfd;
@@ -69,12 +58,21 @@
   transition: ease-in-out 0.2s;
 }
 
+.Button-style2 {
+  all: unset;
+  color: #5659dd;
+  font-weight: 600;
+  padding: 10px 20px;
+  box-shadow: 0px 1px 10px #bcbcfd;
+  border-radius: 10px;
+}
 .Button-style2:focus {
   all: unset;
   color: #5659dd;
   font-weight: 600;
   padding: 10px 20px;
-  box-shadow: 0px 2px 10px #bcbcfd;
+  box-shadow: 0px 1px 10px #bcbcfd;
+  border-radius: 10px;
 }
 .Button-style2:active {
   box-shadow: none;
@@ -113,7 +111,7 @@
   top: 0;
   left: 0;
   height: 100vh;
-  background: #fff7f8;
+  background: url("background.jpg");
   z-index: 999;
   transition: all 0.3s ease;
 }
@@ -196,4 +194,12 @@
   .logout_btn a {
     display: none;
   }
+}
+
+/* Table style */
+.table-style {
+  border: solid 2px black;
+  height: 400px;
+  padding: 20px;
+  margin: 30px 60px;
 }
