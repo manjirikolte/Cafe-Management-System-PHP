@@ -72,19 +72,13 @@ h1 {
   border-radius: 200px;
   transition: background-color0.2s, border 0.2s, color 0.2;
 }
-.btn-full {
+.button-style {
   background-color: transparent;
   color: #5659dd;
   margin-right: 15px;
   border: 2px solid #9193e3;
 }
 
-.btn-nav {
-  background-color: transparent;
-  color: #5659dd;
-  margin-right: 15px;
-  border: 2px solid #9193e3;
-}
 .colorchange {
   animation: colorchangeyoga 1s infinite;
 }
@@ -93,13 +87,13 @@ h1 {
     color: red;
   }
   25% {
-    color: #f55ec;
+    color: #f55e2c;
   }
   50% {
     color: white;
   }
   100% {
-    color: #f55ec;
+    color: #f55e2c;
   }
 }
 .mobile-icon {

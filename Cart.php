@@ -94,13 +94,13 @@
       </div>
 
       <ul class="siderbar_menu mx-2">
-          <div ><h5 class="text-white text-center my-5"> Admin  </h5></div>
+          <div ><h5 class="text-center my-5"> Admin  </h5></div>
 
           <!-- Create User Button -->
-        <div class="Button-user text-center mt-5" data-toggle="modal" data-target="#exampleModal"> <a link='#' > Add Item </a> </div>
+        <div class="Button-style text-center mt-5" data-toggle="modal" data-target="#exampleModal"> <a link='#' > Add Item </a> </div>
 
           <!-- Delete User Button -->
-        <div class="Button-user text-center mt-5"> <a link='#' > See Feedback </a> </div>        
+        <div class="Button-style text-center mt-5"> <a link='#' > Edit Item </a> </div>        
         
       </ul>
 
@@ -116,19 +116,7 @@
       </div>
     </div>
     <div class="content">
-     <h5>  Cafe Management System</h5>
-
-     
-     <dl class="inputbox">
-        <dt class="inputbox-title">Input Text</dt>
-        <dd class="inputbox-content">
-          <input id="input0" type="text" required/>
-          <label for="input0">ID</label>
-          <span class="underline"></span>
-        </dd>
-      </dl>
-
-
+  
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
@@ -140,20 +128,21 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-     
+
               <form action="" method="POST">
-               <div class="data">
-              	   <input type="text" name="pname" placeholder="Enter item" /><br/>
-                   <input type="text" name="price" placeholder="Price" /><br/>
-                   <input type="submit" name="Add_ITEMS" value="submit" /><br/>
-               </div>
+
+                  <div class="modal-body">
+                     <div class="data">
+              	      <input type="text" class="form-control input-style" name="pname" placeholder="Enter item" /><br/>
+                      <input type="text" class="form-control input-style" name="price" placeholder="Price" /><br/>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="submit" name="Add_ITEMS" id="addItems-btn" class="btn btn-success" >submit</button>
+                  </div>
+
               </form>
 
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
             </div>
           </div>
         </div>
@@ -165,10 +154,11 @@
   <div class="col-6">
   
 
-  <div class="form-group pull-right">
-<input type="text" class="search form-control" placeholder="What you looking for?">
-</div>
-<span class="counter pull-right"></span>
+     <div class="form-group">
+       <input type="text" class="search form-control input-style" placeholder="What you looking for?">
+    </div>
+    <!-- Counts no. of items in list -->
+    <span class="counter pull-right"></span>
     <table class="table results"  >
         <thead>
             <tr>
@@ -195,11 +185,10 @@
                         <tr class="product" >
                             <td><?php echo $row["pname"]; ?></td>
                             <td><?php echo $row["price"]; ?></td>
-                            <td width="15%"><input type="number"  name="quantity" class="form-control" value="1"></td>
+                            <td width="15%"><input type="number"  name="quantity" class="form-control input-style" value="1"></td>
                             <td><input type="hidden" name="hidden_name" value="<?php echo $row["pname"]; ?>"><td>
                             <td><input type="hidden" name="hidden_price" value="<?php echo $row["price"]; ?>"></td>
-                            <td><input type="submit"  name="add" style="margin-top: 5px;"
-                                   value="Add"></td
+                            <td><button type="submit"  name="add" class="Button-style2" value="Add">Add</button> </td>
                         </tr>
                     </form>     
 
