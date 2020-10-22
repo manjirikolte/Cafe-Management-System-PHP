@@ -88,7 +88,7 @@
 <div class="wrapper">
   <div class="sidebar">
     <div class="bg_shadow"></div>
-    <div class="sidebar_inner">
+    <div class="sidebar_inner"   >
       <div class="close m-2">
         <i class="fas fa-times"></i>
       </div>

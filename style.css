@@ -111,12 +111,7 @@ a:hover {
   top: 0;
   left: 0;
   height: 100vh;
-  background-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.521),
-      rgba(32, 32, 33, 0.26)
-    ),
-    url("background.jpg");
+  background-image: url("background.jpg");
   z-index: 999;
   transition: all 0.3s ease;
 }
