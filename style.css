@@ -5,6 +5,10 @@
   list-style: none;
   text-decoration: none;
 }
+body {
+  background-color: #212529;
+  color: white;
+}
 a:hover {
   color: inherit; /* blue colors for links too */
   text-decoration: none; /* no underline */
@@ -26,12 +30,12 @@ a:hover {
 
 /* INPUT FIELDS SRYLINg */
 .input-style:focus {
-  border-color: rgb(255, 255, 255);
+  border-color: #393f44;
   box-shadow: 0 0 0 0.2rem #cdcdf8;
 }
 
 .search {
-  border-bottom: solid 2px #9193e3;
+  background-color: #393f44;
 }
 
 /* Button Style */
@@ -60,20 +64,20 @@ a:hover {
 
 .Button-style2 {
   all: unset;
-  color: #5659dd;
+  color: #e6424f;
   font-weight: 600;
   padding: 10px 20px;
-  box-shadow: 0px 1px 10px #bcbcfd;
+  box-shadow: 0px 1px 10px #000000;
   border-radius: 10px;
 }
-.Button-style2:focus {
+/* .Button-style2:focus {
   all: unset;
   color: #5659dd;
   font-weight: 600;
   padding: 10px 20px;
   box-shadow: 0px 1px 10px #bcbcfd;
   border-radius: 10px;
-}
+} */
 .Button-style2:active {
   box-shadow: none;
   transition: ease-in-out 0.2s;
@@ -111,7 +115,14 @@ a:hover {
   top: 0;
   left: 0;
   height: 100vh;
-  background-image: url("background.jpg");
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.521),
+      rgba(32, 32, 33, 0.26)
+    ),
+    url("background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   z-index: 999;
   transition: all 0.3s ease;
 }
@@ -140,10 +151,10 @@ a:hover {
 }
 
 .navbar {
-  background: #fff;
+  background: #2d2d2d;
+  box-shadow: 0 3px 5px black;
   height: 50px;
   width: 100%;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125);
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -202,4 +213,34 @@ a:hover {
   height: 400px;
   padding: 20px;
   margin: 30px 60px;
+}
+
+/* Modal */
+
+.modal-open .modal,
+.btn:focus {
+  outline: none !important;
+}
+
+.modal.dark .modal-body {
+  background: #40464b;
+}
+
+.modal.dark .modal-header {
+  background: #2d3032;
+  border-bottom: 1px solid #2a2c2e;
+}
+.modal.dark .modal-header h1,
+.modal.dark .modal-header h2,
+.modal.dark .modal-header h3,
+.modal.dark .modal-header h4 {
+  color: #ccc;
+}
+
+.modal.dark .modal-footer {
+  background: #2d3032;
+  border-top: 1px solid #2a2c2e;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
