@@ -21,6 +21,31 @@ header {
   height: 100vh;
 }
 
+.blurred-box {
+  width: 20rem;
+  height: 20rem;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  position: relative;
+  z-index: 1;
+  background: inherit;
+  overflow: hidden;
+}
+
+.blurred-box:before {
+  content: "";
+  position: absolute;
+  background: inherit;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
+  filter: blur(10px);
+  margin: -20px;
+}
+
 .main-content-header {
   width: 1180px;
   position: absolute;
@@ -59,6 +84,19 @@ h1 {
   margin-right: 15px;
   border: 2px solid #bf55ec;
 }
+
+.login-btn {
+  width: 66%;
+  border: solid 2px white;
+  border-radius: 50px;
+  padding: 5px;
+  cursor: pointer;
+  box-shadow: 0 0 7px rgb(182, 182, 182);
+}
+.login-btn:active {
+  box-shadow: none;
+}
+
 .colorchange {
   animation: colorchangeyoga 1s infinite;
 }

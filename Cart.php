@@ -80,28 +80,6 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Custom css -->
   <link rel="stylesheet" href="style.css">
-  <style>
-    .Button-style2 {
-      all: unset;
-      color: #e6424f;
-      font-weight: 600;
-      padding: 10px 20px;
-      box-shadow: 0px 1px 10px #000000;
-      border-radius: 10px;
-    }
-    /* .Button-style2:focus {
-       all: unset;
-       color: #5659dd;
-       font-weight: 600;
-       padding: 10px 20px;
-       box-shadow: 0px 1px 10px #bcbcfd;
-       border-radius: 10px;
-    } */
-    .Button-style2:active {
-     box-shadow: none;
-     transition: ease-in-out 0.2s;
-    }
-  </style>
 
 </head>
 
@@ -143,6 +121,7 @@
         </div>
         <div class="logo">
           <!-- TODO: Logo here-->
+          <h5><i>Cafe Time</i> </h5>
         </div>
 
       </div>
@@ -169,10 +148,12 @@
 
                 <div class="modal-body">
                   <div class="data">
-                    <input type="text" class="form-control bg-secondary input-style" name="pname"
-                      placeholder="Enter item" /><br />
-                    <input type="text" class="form-control bg-secondary input-style" name="price"
-                      placeholder="Price" /><br />
+                      <div class="input-fields mb-4">
+                         <input class="inp-style" type="text" name="pname" autocomplete="off" placeholder="Item Name">
+                       </div>
+                       <div class="input-fields mb-4">
+                         <input class="inp-style" type="text" name="price" autocomplete="off" placeholder="Price">
+                       </div>
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -193,9 +174,14 @@
 
             <div class="col-6">
               <!-- Search Bar -->
-              <div class="form-group">
-                <input type="text" class="search form-control input-style" placeholder="What you looking for?">
+              <div class="searchbar mb-4">
+
+                  <input class="search_input search" type="text" name="" placeholder="What are you looking for?">
+                  <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+
               </div>
+
+
               <!-- Counts no. of items in list -->
               <span class="counter pull-right"></span>
 
@@ -286,7 +272,7 @@
                     <tr>
                       <td colspan="3" align="right" class="p-3">TOTAL AMOUNT TO PAY</td>
                       <th align="right" style="font-size:1.2em"> ₹ <?php echo number_format($total, 2); ?></th>
-                      <td> <a href="Cart.php?action=empty"><span class="Button-style"> SOLD </span></a> </td>
+                      <td> <a href="Cart.php?action=empty"><span class="Button-style2 text-warning"> SOLD </span></a> </td>
                     </tr>
                     <?php
                       }
