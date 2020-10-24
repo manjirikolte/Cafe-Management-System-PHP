@@ -64,6 +64,27 @@
     
     }
 
+    if(isset($_POST["submit"])){
+
+                             
+      if ($con->connect_error) {
+      die("Connection failed: " . $con->connect_error);
+      } 
+      
+      $sql = "INSERT INTO sales ( name, amount) VALUES ('".$_POST["name"]."','".$_POST['amount']."')";
+      header('Location: Cart.php');
+      
+      if ($con->query($sql) === TRUE) {
+         echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
+      } else {
+         echo "<script type= 'text/javascript'>alert('Error: " . $sql . "<br>" . $con->error."');</script>";
+      }      
+      
+    }
+
+
+
+
 ?>
 
 <!doctype html>
@@ -233,11 +254,8 @@
 
             <!-- Second Column starts -->
             <div class="col-4 table-style">
-
-              <div>
-                <p class="text-center"> Lorem, ipsum dolor sit amet consectetur adipisicing elit quibusdam </p>
-              </div>
-              <div class="table-responsive ">
+             
+              <div class=" ">
                 <table class="table-dark">
                   <thead>
                     <tr>
@@ -271,9 +289,22 @@
                     ?>
                     <tr>
                       <td colspan="3" align="right" class="p-3">TOTAL AMOUNT TO PAY</td>
-                      <th align="right" style="font-size:1.2em"> ₹ <?php echo number_format($total, 2); ?></th>
-                      <td> <a href="Cart.php?action=empty"><span class="Button-style2 text-warning"> SOLD </span></a> </td>
+                      <th colspan="2" align="right" style="font-size:1.2em"> ₹ <?php echo number_format($total, 2); ?></th>
                     </tr>
+                    <tr>
+                     <form action="Cart.php?action=empty" method="POST">
+
+                       <td colspan="4" >
+                          <div class="input-fields" style="width:230px; height: 40px; padding:5px">
+                             <input class="inp-style" type="text" name="name" autocomplete="off" placeholder="Enter Customer Name">
+                             <input type="hidden" name="amount" value="<?php echo (isset($total))?$total:'';?>">
+                           </div>
+                       </td>
+                        <td> <button type="submit" name="submit" class="Button-style2 text-warning" > sold </button> </td>
+                   
+                      </form>
+                    </tr>
+
                     <?php
                       }
                     ?>
