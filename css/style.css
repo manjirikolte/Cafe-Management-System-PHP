@@ -9,8 +9,9 @@ body {
   background-color: #212529;
   color: white;
 }
+a,
 a:hover {
-  color: inherit;
+  color: white;
   text-decoration: none;
 }
 
@@ -180,7 +181,7 @@ a:hover {
       rgba(0, 0, 0, 0.521),
       rgba(32, 32, 33, 0.26)
     ),
-    url("background.jpg");
+    url("../img/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 999;

@@ -1,23 +1,24 @@
 <?php
     session_start();
-    $database_name = "Product_details";
-    $con = mysqli_connect("localhost","root","",$database_name);
- 
+
+    include 'db_con.php';
+
+    if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
+
 
     if (isset($_POST["add"])){
-        if (isset($_SESSION["cart"])){
-            $item_array_id = array_column($_SESSION["cart"],"product_id");
+        if (isset($_SESSION["bill"])){
+            $item_array_id = array_column($_SESSION["bill"],"product_id");
             
            if (!in_array($_GET["id"],$item_array_id)){
-                $count = count($_SESSION["cart"]);
+                $count = count($_SESSION["bill"]);
                  $item_array = array(
                     'product_id' => $_GET["id"],
                     'item_name' => $_POST["hidden_name"],
                     'product_price' => $_POST["hidden_price"],
                     'item_quantity' => $_POST["quantity"],
                 );
-                $_SESSION["cart"][$count] = $item_array;
-                // echo '<script>window.location = "Cart.php"</script>';
+                $_SESSION["bill"][$count] = $item_array;
             }
         }else{
             $item_array = array(
@@ -26,16 +27,15 @@
                 'product_price' => $_POST["hidden_price"],
                 'item_quantity' => $_POST["quantity"],
             );
-            $_SESSION["cart"][0] = $item_array;
+            $_SESSION["bill"][0] = $item_array;
         }
     }
 
     if (isset($_GET["action"])){
         if ($_GET["action"] == "delete"){
-            foreach ($_SESSION["cart"] as $keys => $value){
+            foreach ($_SESSION["bill"] as $keys => $value){
                 if ($value["product_id"] == $_GET["id"]){
-                    unset($_SESSION["cart"][$keys]);
-                    // echo '<script>window.location = "Cart.php"</script>';
+                    unset($_SESSION["bill"][$keys]);
                 }
             }
         }
@@ -43,12 +43,12 @@
 
     if (isset($_GET["action"])){
         if ($_GET["action"] == "empty"){
-          unset($_SESSION["cart"]);             
+          unset($_SESSION["bill"]);             
         }
     }
 
     if(isset($_POST["Add_ITEMS"])){
-      header('Location: cart.php');
+      header('Location: Admin.php');
     
       if ($con->connect_error) {
         die("Connection failed: " . $con->connect_error);
@@ -72,7 +72,7 @@
       } 
       
       $sql = "INSERT INTO sales ( name, amount) VALUES ('".$_POST["name"]."','".$_POST['amount']."')";
-      header('Location: Cart.php');
+      header('Location: Admin.php');
       
       if ($con->query($sql) === TRUE) {
          echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
@@ -81,8 +81,6 @@
       }      
       
     }
-
-
 
 
 ?>
@@ -100,7 +98,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Custom css -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    a,
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+    </style>
 
 </head>
 
@@ -120,12 +125,19 @@
             <h5 class="text-center my-5"> Admin </h5>
           </div>
 
-          <!-- Create User Button -->
-          <div class="Button-style text-center mt-5" data-toggle="modal" data-target="#exampleModal"> <a link='#'> Add
+          <!-- Create Item Button -->
+          <div class="Button-style text-center mt-5" data-toggle="modal" data-target="#exampleModal"> <a href='#'> Add
               Item </a> </div>
 
-          <!-- Delete User Button -->
-          <div class="Button-style text-center mt-5"> <a link='#'> Edit Item </a> </div>
+          <!-- Delete Item Button -->
+          <div class="Button-style text-center mt-5"> <a href='Delete-item.php'> Delete
+              Item </a> </div>
+
+           <!-- Total sales Button -->
+           <div class="Button-style text-center mt-5"> <a href='Total-sale.php'> Total
+              Sales </a> </div>
+
+          <div class="Button-style text-center mt-5"> <a href="logout.php">Logout</a> </div>
 
         </ul>
 
@@ -141,7 +153,6 @@
           <i class="fas fa-bars"></i>
         </div>
         <div class="logo">
-          <!-- TODO: Logo here-->
           <h5><i>Cafe Time</i> </h5>
         </div>
 
@@ -169,16 +180,16 @@
 
                 <div class="modal-body">
                   <div class="data">
-                      <div class="input-fields mb-4">
-                         <input class="inp-style" type="text" name="pname" autocomplete="off" placeholder="Item Name">
-                       </div>
-                       <div class="input-fields mb-4">
-                         <input class="inp-style" type="text" name="price" autocomplete="off" placeholder="Price">
-                       </div>
+                    <div class="input-fields mb-4">
+                      <input class="inp-style" type="text" name="pname" autocomplete="off" placeholder="Item Name">
+                    </div>
+                    <div class="input-fields mb-4">
+                      <input class="inp-style" type="text" name="price" autocomplete="off" placeholder="Price">
+                    </div>
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" name="Add_ITEMS" id="addItems-btn" class="btn btn-success">submit</button>
+                  <button type="submit" name="Add_ITEMS"  class="btn btn-success">submit</button>
                 </div>
 
               </form>
@@ -197,8 +208,8 @@
               <!-- Search Bar -->
               <div class="searchbar mb-4">
 
-                  <input class="search_input search" type="text" name="" placeholder="What are you looking for?">
-                  <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                <input class="search_input search" type="text" name="" placeholder="What are you looking for?">
+                <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
 
               </div>
 
@@ -221,14 +232,14 @@
                 <!-- PHP CODE to FETCH ELEMENT -->
                 <tbody>
                   <?php
-                        $query = "SELECT * FROM product ORDER BY id ASC ";
+                        $query = "SELECT * FROM product ORDER BY pname ASC ";
                         $result = mysqli_query($con,$query);
                         if(mysqli_num_rows($result) > 0) {
 
                         while ($row = mysqli_fetch_array($result)) {
                     ?>
 
-                  <form method="post" action="Cart.php?action=add&id=<?php echo $row["id"]; ?>">
+                  <form method="post" action="Admin.php?action=add&id=<?php echo $row["id"]; ?>">
                     <tr class="product">
                       <td><?php echo $row["pname"]; ?></td>
                       <td><?php echo $row["price"]; ?></td>
@@ -237,7 +248,7 @@
                       <td><input type="hidden" name="hidden_name" value="<?php echo $row["pname"]; ?>">
                       <td>
                       <td><input type="hidden" name="hidden_price" value="<?php echo $row["price"]; ?>"></td>
-                      <td><button type="submit" name="add" class="Button-style2" value="Add">Add</button> </td>
+                      <td><button type="submit" name="add" class="Button-style2 text-info" value="Add">Add</button> </td>
                     </tr>
                   </form>
 
@@ -254,7 +265,7 @@
 
             <!-- Second Column starts -->
             <div class="col-4 table-style">
-             
+
               <div class=" ">
                 <table class="table-dark">
                   <thead>
@@ -269,9 +280,9 @@
                   <!-- PHP CODE TO CALCULATE BILL -->
                   <tbody>
                     <?php
-                        if(!empty($_SESSION["cart"])){
+                        if(!empty($_SESSION["bill"])){
                           $total = 0;
-                          foreach ($_SESSION["cart"] as $key => $value) {
+                          foreach ($_SESSION["bill"] as $key => $value) {
                     ?>
                     <tr>
                       <td><?php echo $value["item_name"]; ?></td>
@@ -279,7 +290,7 @@
                       <td> <?php echo $value["product_price"]; ?></td>
                       <td>
                         <?php echo number_format($value["item_quantity"] * $value["product_price"], 2); ?></td>
-                      <td class="px-3"><a href="Cart.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span
+                      <td class="px-3"><a href="Admin.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span
                             class="text-danger ">✕</span></a></td>
 
                     </tr>
@@ -289,20 +300,25 @@
                     ?>
                     <tr>
                       <td colspan="3" align="right" class="p-3">TOTAL AMOUNT TO PAY</td>
-                      <th colspan="2" align="right" style="font-size:1.2em"> ₹ <?php echo number_format($total, 2); ?></th>
+                      <th colspan="2" align="right" style="font-size:1.2em"> ₹ <?php echo number_format($total, 2); ?>
+                      </th>
                     </tr>
                     <tr>
-                     <form action="Cart.php?action=empty" method="POST">
+                    <!-- Save Customer Name and total bill into db -->
+                      <form action="Admin.php?action=empty" method="POST">
 
-                       <td colspan="4" >
+                        <td colspan="4">
                           <div class="input-fields" style="width:230px; height: 40px; padding:5px">
-                             <input class="inp-style" type="text" name="name" autocomplete="off" placeholder="Enter Customer Name">
-                             <input type="hidden" name="amount" value="<?php echo (isset($total))?$total:'';?>">
-                           </div>
-                       </td>
-                        <td> <button type="submit" name="submit" class="Button-style2 text-warning" > sold </button> </td>
-                   
+                            <input class="inp-style" type="text" name="name" autocomplete="off"
+                              placeholder="Enter Customer Name">
+                            <input type="hidden" name="amount" value="<?php echo (isset($total))?$total:'';?>">
+                          </div>
+                        </td>
+                        <td> <button type="submit" name="submit" class="Button-style2 text-warning"> sold </button>
+                        </td>
+
                       </form>
+                      <!-- Save Customer Name and total bill into db -->
                     </tr>
 
                     <?php
@@ -342,8 +358,15 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <!-- Custom JS file -->
-  <script src="index.js"> </script>
+  <script src="./js/index.js"> </script>
 
 </body>
 
 </html>
+
+<?php 
+}else{
+     header("Location: login-page.php");
+     exit();
+}
+ ?>

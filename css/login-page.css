@@ -14,7 +14,7 @@ header {
       rgba(0, 0, 0, 0.521),
       rgba(32, 32, 33, 0.26)
     ),
-    url("background.jpg");
+    url("../img/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

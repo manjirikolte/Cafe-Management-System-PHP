@@ -1,15 +1,14 @@
 <?php
     session_start();
-    $database_name = "Product_details";
-    $con = mysqli_connect("localhost","root","",$database_name);
+    include 'db_con.php';
 
     if(isset($_GET['delete'])){
-      header('Location: edit.php');
+      header('Location: Delete-item.php');
       $id= $_GET['delete'];
       $sql = "DELETE FROM product WHERE id=$id ";   
     
       if ($con->query($sql) === TRUE) {
-        echo "<script type= 'text/javascript'>alert('record is deleted');</script>";
+        // echo "<script type= 'text/javascript'></script>";
       } else {
         echo "<script type= 'text/javascript'>alert('Error: " . $sql . "<br>" . $con->error."');</script>";
       }
@@ -27,7 +26,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Custom css -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 <div class="wrapper">
@@ -44,12 +43,9 @@
             <h5 class="text-center my-5"> Admin </h5>
           </div>
 
-          <!-- Create User Button -->
-          <div class="Button-style text-center mt-5" data-toggle="modal" data-target="#exampleModal"> <a link='#'> Add
-              Item </a> </div>
-
-          <!-- Delete User Button -->
-          <div class="Button-style text-center mt-5"> <a link='#'> Edit Item </a> </div>
+           <!-- Go to Admin Page -->
+          <div class="Button-style text-center mt-5"> <a href='Admin.php'> Go
+              Back </a> </div>
 
         </ul>
 
@@ -81,7 +77,6 @@
               <tr>
                 <th >Item</th>
                 <th >price</th>
-                <th>Edit</th>
                 <th>delete</th>
               </tr>
               <tr class="warning no-result">
@@ -91,7 +86,7 @@
             <!-- PHP CODE to FETCH ELEMENT -->
             <tbody>
               <?php
-                    $query = "SELECT * FROM product ORDER BY id ASC ";
+                    $query = "SELECT * FROM product ";
 
                     $result = mysqli_query($con,$query);
                     if(mysqli_num_rows($result) > 0) {
@@ -99,15 +94,12 @@
                     while ($row = mysqli_fetch_array($result)) {
                 ?>
 
-              <form method="post" action="Cart.php?action=add&id=<?php echo $row["id"]; ?>">
                 <tr class="product ">
                   <td><?php echo $row["pname"]; ?></td>
                   <td><?php echo $row["price"]; ?></td>
-                  <td> <a href="edit.php?edit=<?php echo $row['id'];?>" class=" btn text-info Button-style2">Edit</a> </td>
-                  <td> <a href="edit.php?delete=<?php echo $row['id'];?>" class=" btn Button-style2">Delete</a> </td>
+                  <td> <a href="Delete-item.php?delete=<?php echo $row['id'];?>" class=" btn Button-style2">Delete</a> </td>
                 </tr>
-              </form>
-
+         
               <?php
                    }
                   }

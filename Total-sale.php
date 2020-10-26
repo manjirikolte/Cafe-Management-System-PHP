@@ -1,7 +1,6 @@
 <?php
     session_start();
-    $database_name = "Product_details";
-    $con = mysqli_connect("localhost","root","",$database_name);
+    include 'db_con.php';
 
     $result = mysqli_query($con, 'SELECT SUM(amount) AS value FROM sales'); 
     $row = mysqli_fetch_assoc($result); 
@@ -20,7 +19,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Custom css -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -38,12 +37,9 @@
             <h5 class="text-center my-5"> Admin </h5>
           </div>
 
-          <!-- Create User Button -->
-          <div class="Button-style text-center mt-5" data-toggle="modal" data-target="#exampleModal"> <a link='#'> Add
-              Item </a> </div>
-
-          <!-- Delete User Button -->
-          <div class="Button-style text-center mt-5"> <a link='#'> Edit Item </a> </div>
+         <!-- Go to Admin Page -->
+         <div class="Button-style text-center mt-5"> <a href='Admin.php'> Go
+              Back </a> </div>
 
         </ul>
 
@@ -75,8 +71,8 @@
               <table class="table results table-dark">
                 <thead>
                   <tr>
-                    <th>Item</th>
-                    <th>price</th>
+                    <th>Cusotmer Name</th>
+                    <th>Bill Amount</th>
                   </tr>
                   <tr class="warning no-result">
                     <td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -93,12 +89,11 @@
                     while ($row = mysqli_fetch_array($result)) {
                 ?>
 
-                  <form method="post" action="Cart.php?action=add&id=<?php echo $row["id"]; ?>">
                     <tr class="product ">
                       <td><?php echo $row["name"]; ?></td>
                       <td><?php echo $row["amount"]; ?></td>
                     </tr>
-                  </form>
+                
 
                   <?php
                    }
@@ -112,7 +107,7 @@
             <div class="col-4 border m-3 p-3 text-center">
                   <h2 >TOTAL SALES</h2>
                   <?php
-                    echo "<h2>$sum </h2> ";
+                    echo "<h2>₹ $sum </h2> ";
                   ?>
             </div>
 
